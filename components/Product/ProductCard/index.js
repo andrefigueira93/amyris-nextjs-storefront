@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { priceFormatter } from '../../utils/helpers';
+import { priceFormatter } from '../../../utils/helpers';
 
 const ProductCard = ({ product }) => {
   const { handle, title } = product;
