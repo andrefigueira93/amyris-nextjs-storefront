@@ -1,9 +1,8 @@
 import Head from 'next/head';
-import ProductList from '../components/ProductList';
+import ProductList from '../components/Product/ProductList';
 import { getProductsInCollection } from '../lib/shopify';
 
 export default function Home({ products }) {
-  console.log(products);
   return (
     <>
       <Head>
@@ -19,7 +18,6 @@ export default function Home({ products }) {
 
 export async function getStaticProps() {
   const products = await getProductsInCollection();
-
   return {
     props: {
       products,
