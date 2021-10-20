@@ -3,9 +3,9 @@ import Image from 'next/image';
 import { priceFormatter } from '../../../utils/helpers';
 
 const ProductCard = ({ product }) => {
-  const { handle, title } = product;
-  const { altText, originalSrc } = product.images.edges[0].node;
-  const price = product.priceRange.minVariantPrice.amount;
+  const { handle, title } = product.node;
+  const { altText, originalSrc } = product.node.images.edges[0].node;
+  const price = product.node.priceRange.minVariantPrice.amount;
   return (
     <Link href={`/products/${handle}`}>
       <a className="group" href="">

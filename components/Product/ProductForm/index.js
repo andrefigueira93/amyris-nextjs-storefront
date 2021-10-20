@@ -28,8 +28,8 @@ const ProductForm = ({ product }) => {
   });
 
   const defaultValues = {};
-  product.options.map((item) => {
-    defaultValues[item.name] = item.values[0];
+  product.options.map(({ name, values }) => {
+    defaultValues[name] = values[0];
   });
 
   const [selectedVariant, setSelectedVariant] = useState(allVariantOptions[0]);
