@@ -5,22 +5,24 @@ import { useShopify } from '../../../context/shopContext';
 
 const ProductForm = ({ product }) => {
   const { addToCart } = useShopify();
+  const { title, handle, variants, options } = product;
 
-  const allVariantOptions = product.variants.edges?.map((variant) => {
+  const allVariantOptions = variants.edges?.map((variant) => {
     const allOptions = {};
+    const { node } = variant;
 
-    variant.node.selectedOptions.map((item) => {
+    node.selectedOptions.map((item) => {
       allOptions[item.name] = item.value;
     });
 
     return {
-      id: variant.node.id,
-      title: product.title,
-      handle: product.handle,
-      image: variant.node.image?.originalSrc,
+      id: node.id,
+      title,
+      handle,
+      image: node.image?.originalSrc,
       options: allOptions,
-      variantTitle: variant.node.title,
-      variantPrice: variant.node.priceV2.amount,
+      variantTitle: node.title,
+      variantPrice: node.priceV2.amount,
       variantQuantity: 1,
     };
   });
@@ -52,11 +54,11 @@ const ProductForm = ({ product }) => {
 
   return (
     <div className="rounded-2xl p-4 shadow-lg flex flex-col w-full md:w-1/3">
-      <h2 className="text-2xl font-bold">{product.title}</h2>
+      <h2 className="text-2xl font-bold">{title}</h2>
       <span className="pb-3">
-        {priceFormatter.format(product.variants.edges[0].node.priceV2.amount)}
+        {priceFormatter.format(variants.edges[0].node.priceV2.amount)}
       </span>
-      {product.options.map(({ name, values }) => (
+      {options.map(({ name, values }) => (
         <ProductOptions
           key={`key-${name}`}
           name={name}
