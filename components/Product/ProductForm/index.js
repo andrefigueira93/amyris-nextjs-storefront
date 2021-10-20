@@ -1,4 +1,4 @@
-import ProductOptions from './ProductOptions';
+import ProductOptions from '../ProductOptions';
 import { useState } from 'react';
 import { priceFormatter } from '../../../utils/helpers';
 import { useShopify } from '../../../context/shopContext';
