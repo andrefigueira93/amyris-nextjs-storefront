@@ -8,9 +8,7 @@ export default function Home({ products }) {
       <Head>
         <title>Amyris Next.js Storefront</title>
       </Head>
-      <div>
-        <ProductList products={products} />
-      </div>
+      <ProductList products={products} />
     </>
   );
 }

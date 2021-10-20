@@ -4,11 +4,11 @@ import Application from '../components/Application';
 import ShopProvider from '../context/shopContext';
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
+  const { asPath } = useRouter();
   return (
     <ShopProvider>
       <Application>
-        <Component {...pageProps} key={router.asPath} />
+        <Component {...pageProps} key={asPath} />
       </Application>
     </ShopProvider>
   );
