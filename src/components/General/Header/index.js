@@ -7,7 +7,9 @@ const Header = () => {
 
   let cartQuantity = 0;
 
-  cart.map((item) => (cartQuantity += item?.variantQuantity));
+  cart.map((item) => {
+    cartQuantity += item?.variantQuantity;
+  });
 
   return (
     <header className="border-b sticky top-0 z-20 bg-white">
@@ -23,7 +25,7 @@ const Header = () => {
         >
           Cart ({cartQuantity})
         </a>
-        <MiniCart cart={cart} />
+        {/* <MiniCart cart={cart} /> */}
       </div>
     </header>
   );
