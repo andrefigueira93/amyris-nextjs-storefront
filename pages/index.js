@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Hero from '../components/Hero';
 import ProductList from '../components/Product/ProductList';
 import { getProductsInCollection } from '../lib/shopify';
 
@@ -8,6 +9,7 @@ export default function Home({ products }) {
       <Head>
         <title>Amyris Next.js Storefront</title>
       </Head>
+      <Hero />
       <ProductList products={products} />
     </>
   );
