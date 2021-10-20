@@ -1,6 +1,10 @@
 import Head from 'next/head';
 import ProductPageContent from '../../components/Product/ProductPageContent';
-import { getAllProducts, getProduct } from '../../lib/shopify';
+import {
+  getAllProducts,
+  getProduct,
+  recursiveCatalog,
+} from '../../lib/shopify';
 
 const ProductPage = ({ product }) => {
   return (
@@ -16,16 +20,16 @@ const ProductPage = ({ product }) => {
 export default ProductPage;
 
 export async function getStaticPaths() {
-  const products = await getAllProducts();
+  const products = await recursiveCatalog();
 
-  const paths = products.map(({ node }) => {
-    const handle = String(node.handle);
+  const paths = products.map((item) => {
+    const product = String(item.node.handle);
+
     return {
-      params: {
-        product: handle,
-      },
+      params: { product },
     };
   });
+
   return {
     paths,
     fallback: false,

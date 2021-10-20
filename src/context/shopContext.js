@@ -1,9 +1,16 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { createCheckout, updateCheckout } from '../lib/shopify';
 
-const CartContext = createContext();
+const CartContext = createContext({
+  cart: [],
+  cartOpen: false,
+  setCartOpen: () => {},
+  addToCart: () => {},
+  checkoutUrl: '',
+  removeCartItem: () => {},
+});
 
-export default function ShopProvider({ children }) {
+const ShopProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutId, setCheckoutId] = useState('');
@@ -91,8 +98,14 @@ export default function ShopProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
+};
 
 const ShopConsumer = CartContext.Consumer;
 
 export { ShopConsumer, CartContext };
+
+export function useShopify() {
+  return useContext(CartContext);
+}
+
+export default ShopProvider;
