@@ -25,7 +25,7 @@ const Header = () => {
         >
           Cart ({cartQuantity})
         </a>
-        {/* <MiniCart cart={cart} /> */}
+        <MiniCart cart={cart} />
       </div>
     </header>
   );
